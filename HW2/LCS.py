@@ -1,6 +1,7 @@
 import random as rand                   # To generate list
 from matplotlib import pyplot as plt    # To draw plots
 import timeit                           # To measure running time
+import sys
 
 
 # Longest Common Sub-sequence: Top-Down
@@ -85,17 +86,18 @@ def dp_driver(n):
 
 # main function
 if __name__ == "__main__":
-    N = 50
+    sys.setrecursionlimit(100000)
+    N = 10
     plot_x = []     # plot x
     plot_y = []     # plot y
     avg_runtime = 0     # avg runtime
-    for _ in range(10):     # ten different input size N
+    for _ in range(100):     # ten different input size N
         avg_runtime = 0
         plot_x.append(N)
         for _ in range(5):      # repeat 5 times on same input size
             avg_runtime += dp_driver(N)     # run DP
         avg_runtime //= 5       # get average : get rid of decimal points
         plot_y.append(avg_runtime)
-        N += 50     # increase input size by 50
+        N += 10     # increase input size by 50
     draw_plot(plot_x, plot_y, title="Average Runtime")  # draw plots
     plt.show()  # print plots
