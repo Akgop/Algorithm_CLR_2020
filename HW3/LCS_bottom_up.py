@@ -5,13 +5,13 @@ import timeit                           # To measure running time
 
 # bottom up LCS
 def lcs_length(x, y, n, table):
-    for i in range(1, n + 1):
-        for j in range(1, n + 1):
-            if x[i - 1] == y[j - 1]:
+    for i in range(1, n + 1):   # x값 증가하며 순회
+        for j in range(1, n + 1):   # y값 증가하며 순회
+            if x[i - 1] == y[j - 1]:    # x와 y가 같다면 i-1 j-1 + 1
                 table[i][j] = table[i - 1][j - 1] + 1
-            else:
+            else:                       # 다르다면 위, 왼쪽에서 더 큰 값 가져오기
                 table[i][j] = max(table[i - 1][j], table[i][j - 1])
-    return table[n][n]
+    return table[n][n]  # 최종 결과 반환
 
 
 # get string of result
